@@ -53,3 +53,48 @@ CREATE TABLE auth_cas(
     renew CHAR(1)
 );
 success!
+timestamp: 2016-07-26T19:41:31.609000
+CREATE TABLE usuario(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username CHAR(512),
+    nombre CHAR(512),
+    apellido CHAR(512),
+    paswd CHAR(512),
+    correo CHAR(512),
+    tel CHAR(512)
+);
+success!
+timestamp: 2016-07-26T19:44:36.731000
+CREATE TABLE maker(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_user INTEGER REFERENCES usuario (id) ON DELETE CASCADE  ,
+    lat CHAR(512),
+    lng CHAR(512)
+);
+success!
+timestamp: 2016-07-26T19:46:08.950000
+CREATE TABLE marker(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_user INTEGER REFERENCES usuario (id) ON DELETE CASCADE  ,
+    lat CHAR(512),
+    lng CHAR(512)
+);
+success!
+timestamp: 2016-07-26T19:46:09.127000
+CREATE TABLE casa(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_marker INTEGER REFERENCES marker (id) ON DELETE CASCADE  ,
+    nombre CHAR(512),
+    direccion CHAR(512),
+    descipcion CHAR(512),
+    disponible CHAR(512),
+    precio DOUBLE
+);
+success!
+timestamp: 2016-07-26T19:48:21.941000
+CREATE TABLE foto(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_casa INTEGER REFERENCES casa (id) ON DELETE CASCADE  ,
+    file CHAR(512)
+);
+success!

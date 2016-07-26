@@ -136,7 +136,7 @@ db.define_table('usuario',
                 Field('correo'),
                 Field('tel'))
 db.usuario.requires = IS_NOT_IN_DB(db, db.usuario.username)
-db.usuario.requires = IS_NOT_IN_DB(db, db.usuario.correo)
+#db.usuario.requires = IS_NOT_IN_DB(db, db.usuario.correo)
 db.usuario.username.requires = IS_NOT_EMPTY() #REQUIRES SIGNIFICA CAMPO OBLIGATRORIO#
 db.usuario.nombre.requires = IS_NOT_EMPTY() #REQUIRES SIGNIFICA CAMPO OBLIGATRORIO#
 db.usuario.apellido.requires = IS_NOT_EMPTY() #REQUIRES SIGNIFICA CAMPO OBLIGATRORIO#
@@ -145,7 +145,7 @@ db.usuario.correo.requires = IS_NOT_EMPTY() #REQUIRES SIGNIFICA CAMPO OBLIGATROR
 db.usuario.tel.requires = IS_NOT_EMPTY() #REQUIRES SIGNIFICA CAMPO OBLIGATRORIO#
 db.usuario.correo.requires = IS_EMAIL()
 
-db.define_table('maker',
+db.define_table('marker',
                 Field('id_user', db.usuario),
                 Field('lat'),
                 Field('lng'))
@@ -159,7 +159,6 @@ db.define_table('casa',
                 Field('descipcion'),
                 Field('disponible'),
                 Field('precio', 'double'))
-db.casa.precio.requires = IS_DECIMAL()
 db.casa.precio.requires = IS_NOT_EMPTY()
 db.casa.disponible.requires = IS_IN_SET(('Disponible','No Disponible'))
 db.define_table('foto',

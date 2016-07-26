@@ -130,12 +130,16 @@ auth.settings.reset_password_requires_verification = True
 
 db.define_table('usuario',
                 Field('username'),
+                Field('nombre'),
+                Field('apellido')
                 Field('paswd','password'),
                 Field('correo'),
                 Field('tel'))
 db.usuario.requires = IS_NOT_IN_DB(db, db.usuario.username)
 db.usuario.requires = IS_NOT_IN_DB(db, db.usuario.correo)
 db.usuario.username.requires = IS_NOT_EMPTY() #REQUIRES SIGNIFICA CAMPO OBLIGATRORIO#
+db.usuario.nombre.requires = IS_NOT_EMPTY() #REQUIRES SIGNIFICA CAMPO OBLIGATRORIO#
+db.usuario.apellido.requires = IS_NOT_EMPTY() #REQUIRES SIGNIFICA CAMPO OBLIGATRORIO#
 db.usuario.paswd.requires = IS_NOT_EMPTY() #REQUIRES SIGNIFICA CAMPO OBLIGATRORIO#
 db.usuario.correo.requires = IS_NOT_EMPTY() #REQUIRES SIGNIFICA CAMPO OBLIGATRORIO#
 db.usuario.tel.requires = IS_NOT_EMPTY() #REQUIRES SIGNIFICA CAMPO OBLIGATRORIO#
@@ -153,7 +157,7 @@ db.define_table('casa',
                 Field('nombre'),
                 Field('direccion'),
                 Field('descipcion'),
-                Field('disponible')
+                Field('disponible'),
                 Field('precio', 'double'))
 db.casa.precio.requires = IS_DECIMAL()
 db.casa.precio.requires = IS_NOT_EMPTY()

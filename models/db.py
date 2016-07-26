@@ -152,11 +152,12 @@ db.define_table('casa',
                 Field('id_marker', db.marker),
                 Field('nombre'),
                 Field('direccion'),
-                Field('descipcion')
+                Field('descipcion'),
+                Field('disponible')
                 Field('precio', 'double'))
 db.casa.precio.requires = IS_DECIMAL()
 db.casa.precio.requires = IS_NOT_EMPTY()
-
+db.casa.disponible.requires = IS_IN_SET(('Disponible','No Disponible'))
 db.define_table('foto',
                 Field('id_casa', db.casa),
                 Field('file', 'upload'))

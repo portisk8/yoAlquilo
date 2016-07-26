@@ -131,7 +131,7 @@ auth.settings.reset_password_requires_verification = True
 db.define_table('usuario',
                 Field('username'),
                 Field('nombre'),
-                Field('apellido')
+                Field('apellido'),
                 Field('paswd','password'),
                 Field('correo'),
                 Field('tel'))

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge{{=not request.is_local and ',chrome=1' or ''}}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>yoAlquilo</title>
+    <title>Registro</title>
 
     <!-- include stylesheets -->
     <link rel="stylesheet" href="{{=URL('static','css/bootstrap.min.css')}}"/>
@@ -53,7 +53,7 @@
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                 <li><a href="#">Ingreso Usuarios</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="{{=URL('registrarse')}}">Registrarse</a></li>
+                                <li><a href="#">Registrarse</a></li>
                             </ul>
                     </li>
                 </ul>
@@ -71,7 +71,8 @@
                             <h1>yoAlquilo</h1>
                             <h3>Pesca del Dorado 2016- Paso de la Patria</h3>
                             <hr class="intro-divider">
-                            <div id="map" class="jumbotron"></div>
+                            <center><h3>Resgistro</h3></center>
+                            {{=form}}
                         </div>
                 </div>
             </div>
@@ -102,29 +103,6 @@
       <br>
   </footer>
 
-
-<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
-<script src="{{=URL('static','js/gmaps.js')}}"></script>
-
-<script>
-$(document).ready(function(){
-  map = new GMaps({
-    div: '#map',
-    lat:-27.3148011,
-    lng: -58.5636468
-  });
-
-   map.addMarker({
-    lat: -27.3148011,
-    lng: -58.5636468,
-    title: 'Here!',
-    infoWindow: {
-        content: '<p>{{=request.vars.search}}</p>'
-    }
-  });
-});
-</script>
-{{pass}}
 <!-- jQuery -->
     <script src="../static/js/jquery.js"></script>
 

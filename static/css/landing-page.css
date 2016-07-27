@@ -39,11 +39,12 @@ h6 {
     min-height: 400px;
     z-index: 1;
 }
+
 .intro-header {
     padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
     padding-bottom: 50px;
     text-align: center;
-    color: #f8f8f8;
+    color: #495149;
     background: url(../img/rio.jpg) no-repeat center center fixed;
     background-size: cover;
 }

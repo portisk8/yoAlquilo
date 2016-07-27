@@ -1,0 +1,127 @@
+.intro-message {
+    position: relative;
+    padding-top: 2%;
+    padding-bottom: 20%;
+}
+
+.intro-message > h1 {
+    margin: 0;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    font-size: 5em;
+}
+
+.navbar-default {
+  background-color: rgba(255, 255, 255, 0.63);
+  border-color: rgba(255, 255, 255, 0.63);
+}
+
+.box {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    padding: 0px 15px;
+    background: #fff;
+    background: rgba(255, 255, 255, 0.63);
+}
+
+@media screen and (min-width:1200px) {
+    .box:after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+}
+
+.topnav {
+    font-size: 17px; 
+}
+
+.navbar-brand {
+  float: left;
+  height: 50px;
+  padding: 15px 15px;
+  font-size: 30px;
+  line-height: 24px;
+
+}
+.navbar-default .navbar-brand {
+  color: #662F00;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: #662F00;
+  background-color: transparent;
+}
+
+hr {
+  border-color: #0F997F;
+  border-width: 5px;
+  max-width: 80px;
+}
+
+footer {
+    background: rgba(255,255,255,0.9);
+}
+
+footer .footer-above {
+  padding-top: 50px;
+  background-color: #2C3E50;
+}
+footer .footer-col {
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+footer .footer-below {
+  padding: 5px 0;
+  background-color: #662F00;
+}
+
+.intro-message {
+    position: relative;
+    padding-top: 2%;
+    padding-bottom: 20%;
+}
+
+.intro-message > h1 {
+    margin: 0;
+    text-shadow: 2px 2px 3px rgba(138, 109, 59, 0.37);
+    font-size: 3em;
+    color:rgba(56, 66, 59, 0.88);
+}
+
+.intro-divider {
+    width: 400px;
+    border-top: 1px solid #f8f8f8;
+    border-bottom: 2px 2px 3px rgba(138, 109, 59, 0.37);
+}
+
+.intro-message > h3 {
+    text-shadow: 2px 2px 3px rgba(138, 109, 59, 0.37);
+    color: rgba(45, 45, 42, 0.88);
+}
+
+@media(max-width:767px) {
+    .intro-message {
+        padding-bottom: 15%;
+    }
+
+    .intro-message > h1 {
+        font-size: 3em;
+    }
+
+    ul.intro-social-buttons > li {
+        display: block;
+        margin-bottom: 20px;
+        padding: 0;
+    }
+
+    ul.intro-social-buttons > li:last-child {
+        margin-bottom: 0;
+    }
+
+    .intro-divider {
+        width: 100%;
+    }
+}
+.color{
+	background-color: black;
+}

@@ -1,52 +1,160 @@
-{{left_sidebar_enabled,right_sidebar_enabled=False,('message' in globals())}}
-{{extend 'layout.html'}}
+<!DOCTYPE html>
+<html class="no-js" lang="{{=T.accepted_language or 'en'}}"> 
+  <head>
+    <meta charset="utf-8">
 
-{{block header}}
-    <header class="container-fluid background">
-      <div class="jumbotron text-center">
-        {{if response.title:}}
-        <h1>{{=response.title}}
-          <small>{{=response.subtitle or ''}}</small></h1>
-        {{pass}}
-      </div>
-    </header>
-{{end}}
+    <meta http-equiv="X-UA-Compatible" content="IE=edge{{=not request.is_local and ',chrome=1' or ''}}">
 
-{{if 'message' in globals():}}
-<h2>{{=message}}</h2>
-<p class="lead">{{=T('How did you get here?')}}</p>
-<ol>
-  <li>{{=T('You are successfully running web2py')}}</li>
-  <li>{{=XML(T('You visited the url %s', A(request.env.path_info,_href=request.env.path_info)))}}</li>
-  <li>{{=XML(T('Which called the function %s located in the file %s',
-    (A(request.function+'()',_href='#'),
-    A('web2py/applications/%(application)s/controllers/%(controller)s.py' % request,
-    _href=URL('admin','default','peek', args=(request.application,'controllers',request.controller+'.py'))))))}}</li>
-  <li>{{=XML(T('The output of the file is a dictionary that was rendered by the view %s',
-    A('web2py/applications/%(application)s/views/%(controller)s/index.html' % request,
-    _href=URL('admin','default','peek',args=(request.application,'views',request.controller,'index.html')))))}}</li>
-  <li>{{=T('You can modify this application and adapt it to your needs')}}</li>
-</ol>
-{{elif 'content' in globals():}}
-{{=content}}
-{{else:}}
-{{=BEAUTIFY(response._vars)}}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{=response.title or request.application}}</title>
+
+    <meta name="application-name" content="{{=request.application}}">
+
+    <meta name="google-site-verification" content="">
+    <!-- include stylesheets -->
+
+    <link rel="stylesheet" href="{{=URL('static','css/bootstrap.min.css')}}"/>
+    
+    <link rel="stylesheet" href="{{=URL('static','css/landing-page.css')}}"/>
+    <link rel="stylesheet" href="{{=URL('static','css/miestilo.css')}}" />
+
+    
+    <link rel="stylesheet" href="{{=URL('static','font-awesome/css/font-awesome.min.css')}}" type="text/css">
+    <link href="{{=URL('font-awesome','css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <!-- All JavaScript at the bottom, except for Modernizr which enables
+         HTML5 elements & feature detects -->
+    <script src="{{=URL('static','js/modernizr-2.8.3.min.js')}}"></script>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="{{=URL('static','js/main.js')}}"></script>
+    <script src="{{=URL('static','js/modernizr-2.8.3.min.js')}}"></script>
+    <!--[if lt IE 9]>
+        <script src="{{=URL('static','js/respond-1.4.2.min.js')}}"></script>
+        <![endif]-->
+    <!-- Favicons -->
+            {{
+      
+  response.files.append(URL('static','css/freelancer.css'))
+  response.files.append(URL('static','css/bootstrap.min.css'))
+  response.files.append(URL('static','css/bootstrap-responsive.min.css'))
+  response.files.append(URL('static','css/freelancer_bootstrap.css'))
+  response.files.append(URL('static','css/bootstrap.css'))
+  response.files.append(URL('static','css/freelancer.css'))
+  }}
+
+  </head>
+  <body>
+
+  <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+        <div class="container topnav">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                   <img src="../static/img/logoICO.ico" width="50" height="50">
+                
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand topnav" href="#page-top">yoAlquilo</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#about">Mapa</a>
+                    </li>
+                    <li>
+                        <a href="#services">Alquileres</a>
+                    </li>
+                    <li>
+                        <a href="#contact">Registarse</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+<!-- Header -->
+    <a name="about"></a>
+    <div class="intro-header">
+        <div class="container">
+            <div class="row">
+            <div class="box">
+
+                <div class="col-lg-12">
+                    <div class="intro-message">
+                        <h1>yoAlquilo</h1>
+                        <h3>Pesca del Dorado 2016- Paso de la Patria</h3>
+                        <hr class="intro-divider">
+                        <center><div id="map" style="height:400px;width:300px"></div></center>
+                    </div>
+                </div>
+
+
+        </div>
+        </div>
+        </div>
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.intro-header -->
+
+    <!--footer-->
+  <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                  <h2 class="section-heading">Contáctenos</h2>
+                    <hr>
+                    <p>Si tiene alguna duda, comentario, sugerencias o inquietudes, escríbanos al nuestro e-mail o en nuestra Fan Page</p> <br><br>
+                </div>
+                <div class="col-lg-4 col-lg-offset-2 text-center">
+                    <i class="fa fa-facebook fa-3x sr-contact"></i>
+                    <p>yoAlquilo paso de la patria</p>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <i class="fa fa-envelope-o fa-3x sr-contact"></i>
+                    <p><a href="mailto:your-email@your-domain.com">yoalquilo@gmail.com</a></p>
+                </div>
+            </div>
+        </div>
+  </footer>
+      <br><center> Copyright &copy; YoAlquilo 2016</center>
+
+
+  <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+<script src="{{=URL('static','js/gmaps.js')}}"></script>
+
+<script>
+$(document).ready(function(){
+  map = new GMaps({
+    div: '#map',
+    lat:-27.3148011,
+    lng: -58.5636468
+  });
+
+   map.addMarker({
+    lat: -27.3148011,
+    lng: -58.5636468,
+    title: 'Here!',
+    infoWindow: {
+        content: '<p>{{=request.vars.search}}</p>'
+    }
+  });
+});
+</script>
 {{pass}}
+<!-- jQuery -->
+    <script src="js/jquery.js"></script>
 
-{{block right_sidebar}}
-<div class="panel panel-info">
-  <div class="panel-heading"><h3 class="panel-title"><a class="btn-block"
-      href="{{=URL('admin','default','index')}}">
-      <i class="glyphicon glyphicon-cog"></i>
-      {{=T("admin")}}
-    </a></h3></div>
-  <div class="panel-body">
-    {{=T("Don't know what to do?")}}
-  </div>
-  <ul class="list-group">
-    <li class="list-group-item">{{=A(T("Online examples"), _href=URL('examples','default','index'))}}</li>
-    <li class="list-group-item"><a href="http://web2py.com">web2py.com</a></li>
-    <li class="list-group-item"><a href="http://web2py.com/book">{{=T('Documentation')}}</a></li>
-  </ul>
-</div>
-{{end}}
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+   
+  </body>
+</html>
+

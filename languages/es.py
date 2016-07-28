@@ -197,6 +197,8 @@
 'in': 'en',
 'includes': 'incluye',
 'Index': 'Índice',
+'Ingresa un correo electronico': 'Ingresa un correo electronico',
+'Ingresa un nombre de usuario': 'Ingresa un nombre de usuario',
 'insert new': 'inserte nuevo',
 'insert new %s': 'inserte nuevo %s',
 'Installed applications': 'Aplicaciones instaladas',

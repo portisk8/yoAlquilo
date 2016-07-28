@@ -289,3 +289,21 @@ footer .footer-below {
     text-align: center;
 
 }
+@media(max-width:768px) {
+    .centrado{
+    width: 500px;
+    border: 1px;
+    margin: 50px;
+    height: 200px;
+    text-align: center;}
+}
+
+@media(max-width: 320px){
+    .centrado {
+        width: 230px;
+        border: 1px;
+        margin: 30px;
+        height: 480px;
+        text-align: center;
+    }
+}

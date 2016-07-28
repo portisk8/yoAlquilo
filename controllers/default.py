@@ -66,35 +66,28 @@ def getMarkers():
     casas = db().select(db.casa.ALL)
     for casa in casas:
         markers=db(db.marker.id==casa.id_marker).select()
+        photos = db(casa.id == db.foto.id_casa).select()
+        usuario = db(markers[0].id_user == db.usuario.id).select()
+        #<img width ='135px' src='"+URL('download',args=row.file)+"'/>
+        precio = "<p><b>$"+str(casa.precio)+"</b>"
+        contacto = "<p> Nombre:"+usuario[0].nombre+" "+usuario[0].apellido + "<p>Telefono:"+str(usuario[0].tel)
+        but='<a href="/yoAlquilo/casaController/index.html?args='+str(casa.id)+'" class="btn">Mas Detalles</a>'
+        #boton = '<p><button href='+"{{=URL('casaController,'index', args ='"+str(casa.id)+"')}} type='button' class='btn btn-default btn-lg'>Mas Detalles</button>"
         if(casa.disponible=="Disponible"):
-            mapa = {
-                'lat': markers[0].lat,
-                'lng': markers[0].lng,
-                'title': casa.nombre,
-                'infoWindow': { 'content': "<h4>" + casa.nombre +"</h4>"},
-                'icon':'../static/icons/icon_green32.png',
-            }
+            icono = '../static/icons/icon_green32.png'
+            disp ="<p><font color='green'>"+casa.disponible+"</font></p>"
         else:
-            mapa = {
-            'lat': markers[0].lat,
-            'lng': markers[0].lng,
-            'title': casa.nombre,
-            'infoWindow': { 'content': '<h3>' + casa.nombre +'</h3>' },
-            'icon':'../static/icons/icon_pink32.png',
-            }
-        mapas.append(mapa)
-    return response.json(mapas)     
-
-def getAll():
-    mapas =[]
-    rows = db(db.casa.id_marker == db.marker.id).select()
-    for row in rows:
-        mapa={
-            'lat': marker.lat,
-            'lng': marker.lng,
-            'title': casa.nombre,
-            'infoWindow': { 'content': "<h4>" + casa.disponible},
-            'icon':'../static/icons/icon_yellow32.png',
+            icono = '../static/icons/icon_pink32.png'
+            disp ="<p><font color='red'>"+casa.disponible+"</font></p>"
+        mapa = {
+        'lat': markers[0].lat,
+        'lng': markers[0].lng,
+        'title': casa.nombre,
+        'infoWindow': { 'content': '<h4>' + casa.nombre +"</h4><p><img width ='135px' src='"+URL('download',args=photos[0].file)+"'/></p>"+disp+precio+'<button>'+ but +'</button>' },
+        'icon':icono,
         }
         mapas.append(mapa)
     return response.json(mapas)
+
+def download():
+    return response.download(request, db)

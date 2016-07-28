@@ -147,8 +147,8 @@ db.usuario.correo.requires = IS_EMAIL()
 
 db.define_table('marker',
                 Field('id_user', db.usuario),
-                Field('lat'),
-                Field('lng'))
+                Field('lat','text'),
+                Field('lng','text'))
 db.marker.lat.requires = IS_NOT_EMPTY()
 db.marker.lng.requires = IS_NOT_EMPTY()
 
@@ -156,7 +156,7 @@ db.define_table('casa',
                 Field('id_marker', db.marker),
                 Field('nombre'),
                 Field('direccion'),
-                Field('descipcion'),
+                Field('descripcion'),
                 Field('disponible'),
                 Field('precio', 'double'))
 db.casa.precio.requires = IS_NOT_EMPTY()

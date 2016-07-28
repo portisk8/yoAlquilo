@@ -5,24 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge{{=not request.is_local and ',chrome=1' or ''}}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>yoAlquilo</title>
-
     <!-- include stylesheets -->
+    <script src="{{=URL('static','js/jquery.js')}}"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="{{=URL('static','css/bootstrap.min.css')}}"/>
     <link rel="stylesheet" href="{{=URL('static','css/landing-page.css')}}"/>
     <link href="../static/font-awesome/css/font-awesome.css" rel="stylesheet">
     <!-- All JavaScript at the bottom, except for Modernizr which enables
          HTML5 elements & feature detects -->
     <script src="{{=URL('static','js/modernizr-2.8.3.min.js')}}"></script>
-    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="{{=URL('static','js/modernizr-2.8.3.min.js')}}"></script>
     <!--[if lt IE 9]>
         <script src="{{=URL('static','js/respond-1.4.2.min.js')}}"></script>
         <![endif]-->
     <!-- Favicons -->
-
   </head>
   <body>
-
   <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
         <div class="container topnav">
@@ -103,34 +101,65 @@
   </footer>
 
 
+<!-- jQuery -->
+
+    <!-- Bootstrap Core JavaScript -->
+   
 <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
 <script src="{{=URL('static','js/gmaps.js')}}"></script>
 
 <script>
 $(document).ready(function(){
-  map = new GMaps({
-    div: '#map',
-    lat:-27.3148011,
-    lng: -58.5636468
+    map = new GMaps({
+      div: '#map',
+      lat:-27.3148011 ,
+      lng: -58.5636468
+    });
+/*-------------*/
+      $.getJSON('/ya/default/getMarkers',
+              function(data){
+                              map.addMarker({
+                                            lat: -27.3148011,
+                                            lng: -58.5636468,
+                                            title: 'Bienal 2016',
+                                            infoWindow: {
+                                                content: '<p>Usted esta Aqui</p>'
+                                            }
+                                          });
+                              /*--------------*/
+                              var len = data.length;
+                              for(i=0; i< len ; i++){
+                              var lat = data[i].lat;
+                              var lng = data[i].lng;
+                              var title = data[i].title;
+                              var info = data[i].infoWindow;
+                              var ico = data[i].icon;
+                                  map.addMarker({
+                                    lat: lat,
+                                    lng: lng,
+                                    title:title,
+                                    infoWindow : info,
+                                    icon:ico,
+                                    click: function(e){
+                                      map.removePolylines();
+                                      /*alert(this.position);*/
+                                      map.drawRoute({
+                                        origin: [-27.438003, -58.980513],
+                                        destination: [this.position.lat(), this.position.lng()],
+                                        travelMode: 'driving',
+                                        strokeColor: '#3f62d7',
+                                        strokeOpacity: 0.6,
+                                        strokeWeight: 6
+                                      })
+                                    }
+                                  })
+                                
+                              }
+                            }
+      );
   });
-
-   map.addMarker({
-    lat: -27.3148011,
-    lng: -58.5636468,
-    title: 'Here!',
-    infoWindow: {
-        content: '<p>{{=request.vars.search}}</p>'
-    }
-  });
-});
 </script>
 {{pass}}
-<!-- jQuery -->
-    <script src="../static/js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../static/js/bootstrap.min.js"></script>
-   
   </body>
 </html>
 

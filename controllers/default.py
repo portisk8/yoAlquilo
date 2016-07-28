@@ -7,7 +7,7 @@
 # - user is required for authentication and authorization
 # - download is for downloading files uploaded in the db (does streaming)
 # -------------------------------------------------------------------------
-
+from gluon.serializers import loads_json
 
 def index():
     return dict()
@@ -55,4 +55,40 @@ def call():
     """
     return service()
 
+def getMarkers():
+    mapas = []
+    casas = db().select(db.casa.ALL)
+    for casa in casas:
+        markers=db(db.marker.id==casa.id_marker).select()
+        if(casa.disponible=="Disponible"):
+            mapa = {
+                'lat': markers[0].lat,
+                'lng': markers[0].lng,
+                'title': casa.nombre,
+                'infoWindow': { 'content': "<h4>" + casa.nombre +"</h4>"},
+                'icon':'../static/icons/icon_green32.png',
+            }
+        else:
+            mapa = {
+            'lat': markers[0].lat,
+            'lng': markers[0].lng,
+            'title': casa.nombre,
+            'infoWindow': { 'content': '<h3>' + casa.nombre +'</h3>' },
+            'icon':'../static/icons/icon_pink32.png',
+            }
+        mapas.append(mapa)
+    return response.json(mapas)     
 
+def getAll():
+    mapas =[]
+    rows = db(db.casa.id_marker == db.marker.id).select()
+    for row in rows:
+        mapa={
+            'lat': marker.lat,
+            'lng': marker.lng,
+            'title': casa.nombre,
+            'infoWindow': { 'content': "<h4>" + casa.disponible},
+            'icon':'../static/icons/icon_yellow32.png',
+        }
+        mapas.append(mapa)
+    return response.json(mapas)

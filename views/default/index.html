@@ -116,45 +116,9 @@ $(document).ready(function(){
       lng: -58.5636468
     });
 /*-------------*/
-      $.getJSON('/ya/default/getMarkers',
+      $.getJSON('{{=URL('getMarkers')}}',
               function(data){
-                              map.addMarker({
-                                            lat: -27.3148011,
-                                            lng: -58.5636468,
-                                            title: 'Bienal 2016',
-                                            infoWindow: {
-                                                content: '<p>Usted esta Aqui</p>'
-                                            }
-                                          });
-                              /*--------------*/
-                              var len = data.length;
-                              for(i=0; i< len ; i++){
-                              var lat = data[i].lat;
-                              var lng = data[i].lng;
-                              var title = data[i].title;
-                              var info = data[i].infoWindow;
-                              var ico = data[i].icon;
-                                  map.addMarker({
-                                    lat: lat,
-                                    lng: lng,
-                                    title:title,
-                                    infoWindow : info,
-                                    icon:ico,
-                                    click: function(e){
-                                      map.removePolylines();
-                                      /*alert(this.position);*/
-                                      map.drawRoute({
-                                        origin: [-27.438003, -58.980513],
-                                        destination: [this.position.lat(), this.position.lng()],
-                                        travelMode: 'driving',
-                                        strokeColor: '#3f62d7',
-                                        strokeOpacity: 0.6,
-                                        strokeWeight: 6
-                                      })
-                                    }
-                                  })
-                                
-                              }
+                              map.addMarkers(data)
                             }
       );
   });

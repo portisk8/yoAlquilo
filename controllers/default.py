@@ -13,6 +13,12 @@ def index():
     return dict()
 
 
+
+def galeriaCasas():
+    return dict()
+
+
+
 def user():
     """
     exposes:

@@ -34,7 +34,7 @@ def user():
 def registrarse():
     form=SQLFORM(db.usuario)
     if form.accepts(request.vars,session):
-        response.flash='new record inserted'
+        response.flash='Usuario Registrado'
     return dict(form=form)
 
 @cache.action()

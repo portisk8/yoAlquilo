@@ -280,3 +280,12 @@ footer .footer-below {
 .color{
     background-color: black;
 }
+
+.centrado{
+    width: 850px;
+    border: 1px;
+    margin: 50px;
+    height: 170px;
+    text-align: center;
+
+}

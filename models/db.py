@@ -132,7 +132,7 @@ db.define_table('usuario',
                 Field('nombre'),
                 Field('apellido'),
                 Field('username', unique=True),
-                Field('password'),
+                Field('pswd','password'),
                 Field('correo', unique=True),
                 Field('tel'))
 db.usuario.username.requires = [IS_NOT_EMPTY(error_message=T('Ingresa un nombre de usuario')), IS_NOT_IN_DB(db, 'usuario.username',error_message=T('Usuario Existente'))]
@@ -140,7 +140,7 @@ db.usuario.correo.requires = [IS_NOT_EMPTY(error_message=T('Ingresa un correo el
 #db.usuario.username.requires = IS_NOT_EMPTY() #REQUIRES SIGNIFICA CAMPO OBLIGATRORIO#
 db.usuario.nombre.requires = IS_NOT_EMPTY() #REQUIRES SIGNIFICA CAMPO OBLIGATRORIO#
 db.usuario.apellido.requires = IS_NOT_EMPTY() #REQUIRES SIGNIFICA CAMPO OBLIGATRORIO#
-db.usuario.password.requires = IS_NOT_EMPTY() #REQUIRES SIGNIFICA CAMPO OBLIGATRORIO#
+db.usuario.pswd.requires = IS_NOT_EMPTY() #REQUIRES SIGNIFICA CAMPO OBLIGATRORIO#
 #db.usuario.correo.requires = IS_NOT_EMPTY() #REQUIRES SIGNIFICA CAMPO OBLIGATRORIO#
 db.usuario.tel.requires = [IS_NOT_EMPTY(), IS_INT_IN_RANGE( 0, 9999999999,
          error_message=T('Celular sin 0 ni 15'))] #REQUIRES SIGNIFICA CAMPO OBLIGATRORIO#

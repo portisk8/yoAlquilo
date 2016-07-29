@@ -66,7 +66,11 @@ def getMarkers():
     casas = db().select(db.casa.ALL)
     for casa in casas:
         markers=db(db.marker.id==casa.id_marker).select()
-        photos = db(casa.id == db.foto.id_casa).select()
+        try:
+            photo = casa.file
+            imagen = "<p><img width ='135px' src='"+URL('download',args=photo)+"'/></p>"    
+        except:
+            imagen = "<p>Not Image</p>"
         usuario = db(markers[0].id_user == db.usuario.id).select()
         #<img width ='135px' src='"+URL('download',args=row.file)+"'/>
         precio = "<p><b>$"+str(casa.precio)+"</b>"
@@ -83,7 +87,7 @@ def getMarkers():
         'lat': markers[0].lat,
         'lng': markers[0].lng,
         'title': casa.nombre,
-        'infoWindow': { 'content': '<h4>' + casa.nombre +"</h4><p><img width ='135px' src='"+URL('download',args=photos[0].file)+"'/></p>"+disp+precio+'<button>'+ but +'</button>' },
+        'infoWindow': { 'content': '<h4>' + casa.nombre +"</h4>"+imagen+disp+precio+'<button>'+ but +'</button>' },
         'icon':icono,
         }
         mapas.append(mapa)

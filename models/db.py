@@ -159,9 +159,8 @@ db.define_table('casa',
                 Field('direccion'),
                 Field('descripcion'),
                 Field('disponible'),
-                Field('precio', 'double'))
+                Field('precio', 'double'),
+                Field('file','upload'))
 db.casa.precio.requires = IS_NOT_EMPTY()
 db.casa.disponible.requires = IS_IN_SET(('Disponible','No Disponible'))
-db.define_table('foto',
-                Field('id_casa', db.casa),
-                Field('file', 'upload'))
+db.casa.file.requires = IS_IMAGE(extensions=('jpeg', 'png'))

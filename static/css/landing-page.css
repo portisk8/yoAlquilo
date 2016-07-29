@@ -307,3 +307,31 @@ footer .footer-below {
         text-align: center;
     }
 }
+
+@media (max-width: 435px) {
+.centrado {
+    width: 350px;
+    border: 1px;
+    margin: 30px;
+    height: 435px;
+    text-align: center;
+}
+}
+
+.navbar-default .navbar-text {
+  color: #333;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #333;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: white;
+  background-color: transparent;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: white;
+  background-color: #e7e7e7;
+}

@@ -1,0 +1,27 @@
+.box {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    padding: 30px 25px;
+    background: #fff;
+    background: rgba(255, 255, 255, 0.63);
+}
+
+@media screen and (min-width:1200px) {
+    .box:after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+}
+
+h3{
+    text-align: left;
+    color: rgba(158, 83, 16, 0.7);
+}
+
+
+.izq{
+
+    text-align: left;
+    color: #333;
+}

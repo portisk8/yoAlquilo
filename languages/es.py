@@ -172,6 +172,7 @@
 'file "%(filename)s" uploaded': 'archivo "%(filename)s" subido',
 'file "%(filename)s" was not deleted': 'archivo "%(filename)s" no fué eliminado',
 'file "%s" of %s restored': 'archivo "%s" de %s restaurado',
+'file ## download': 'file ',
 'file changed on disk': 'archivo modificado en el disco',
 'file does not exist': 'archivo no existe',
 'file saved on %(time)s': 'archivo guardado %(time)s',

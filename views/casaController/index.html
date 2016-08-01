@@ -114,15 +114,22 @@
 
 <script>
 $(document).ready(function(){
-    map = new GMaps({
-      div: '#map',
-      lat:-27.3148011 ,
-      lng: -58.5636468
-    });
+    $.urlParam = function(name){
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    return results[1] || 0;
+    }
+    var id = $.urlParam('args');
+    /*alert(id)*/
+    var url="{{=URL("getMarker")}}"
 /*-------------*/
-      $.getJSON('{{=URL('getMarkers')}}',
+      $.getJSON(url+"/"+id,
               function(data){
-                              map.addMarkers(data)
+                            map = new GMaps({
+                                  div: '#map',
+                                  lat:data.lat ,
+                                  lng: data.lng
+                                });
+                            map.addMarker(data)
                             }
       );
   });

@@ -77,17 +77,54 @@ response.form_label_separator = myconf.get('forms.separator') or ''
 # (more options discussed in gluon/tools.py)
 # -------------------------------------------------------------------------
 
-from gluon.tools import Auth, Service, PluginManager
+from gluon.tools import Auth
 
 # host names must be a list of allowed host names (glob syntax allowed)
-auth = Auth(db, host_names=myconf.get('host.names'))
-service = Service()
-plugins = PluginManager()
+auth = Auth(globals(),db)
 
+
+## después de auth = Auth(db)
+db.define_table(
+    auth.settings.table_user_name,
+    Field('first_name', length=40, default='', label='Nombre'),
+    Field('last_name', length=40, default='', label='Apellido'),
+    Field('email', length=128, default='', unique=True), # requerido
+    Field('password', 'password', length=512,            # requerido
+          readable=False, label='Contraseña'),
+    Field('phone', length=10, label='Telefono'),
+    Field('registration_key', length=512,                # requerido
+          writable=False, readable=False, default=''),
+    Field('reset_password_key', length=512,              # requerido
+          writable=False, readable=False, default=''),
+    Field('registration_id', length=512,                 # requerido
+          writable=False, readable=False, default=''))
+
+## no te olvides de los validadores
+auth_table_especial = db[auth.settings.table_user_name] # obtiene auth_table_especial
+auth_table_especial.first_name.requires = \
+  IS_NOT_EMPTY(error_message=auth.messages.is_empty)
+auth_table_especial.last_name.requires = \
+  IS_NOT_EMPTY(error_message=auth.messages.is_empty)
+auth_table_especial.password.requires = [ CRYPT()]
+auth_table_especial.email.requires = [
+  IS_EMAIL(error_message=auth.messages.invalid_email),
+  IS_NOT_IN_DB(db, auth_table_especial.email)]
+auth_table_especial.phone.requires = \
+  [IS_NOT_EMPTY(error_message=T('Ingrese un numero de telefono'))]
+  
+
+auth.settings.table_user = auth_table_especial # le dice a auth que use la tabla especial
+
+## antes de  auth.define_tables()
 # -------------------------------------------------------------------------
 # create all tables needed by auth if not custom tables
+# ----------------------------------------
 # -------------------------------------------------------------------------
-auth.define_tables(username=False, signature=False)
+# after defining tables, uncomment below to enable auditing
+# -------------------------------------------------------------------------
+# auth.enable_record_versioning(db)
+#---------------------------------
+auth.define_tables(username=True)
 
 # -------------------------------------------------------------------------
 # configure email
@@ -128,28 +165,11 @@ auth.settings.reset_password_requires_verification = True
 # -------------------------------------------------------------------------
 # auth.enable_record_versioning(db)
 
-db.define_table('usuario',
-                Field('nombre'),
-                Field('apellido'),
-                Field('username', unique=True),
-                Field('pswd','password'),
-                Field('correo', unique=True),
-                Field('tel'))
-db.usuario.username.requires = [IS_NOT_EMPTY(error_message=T('Ingresa un nombre de usuario')), IS_NOT_IN_DB(db, 'usuario.username',error_message=T('Usuario Existente'))]
-db.usuario.correo.requires = [IS_NOT_EMPTY(error_message=T('Ingresa un correo electronico')), IS_EMAIL(error_message=T('Ingresa con este formato tucorreo@ejemplo.com')), IS_NOT_IN_DB(db, 'usuario.correo',error_message=T('Este correo ya fue registrado'))]
-#db.usuario.username.requires = IS_NOT_EMPTY() #REQUIRES SIGNIFICA CAMPO OBLIGATRORIO#
-db.usuario.nombre.requires = IS_NOT_EMPTY() #REQUIRES SIGNIFICA CAMPO OBLIGATRORIO#
-db.usuario.apellido.requires = IS_NOT_EMPTY() #REQUIRES SIGNIFICA CAMPO OBLIGATRORIO#
-db.usuario.pswd.requires = IS_NOT_EMPTY() #REQUIRES SIGNIFICA CAMPO OBLIGATRORIO#
-#db.usuario.correo.requires = IS_NOT_EMPTY() #REQUIRES SIGNIFICA CAMPO OBLIGATRORIO#
-db.usuario.tel.requires = [IS_NOT_EMPTY(), IS_INT_IN_RANGE( 0, 9999999999,
-         error_message=T('Celular sin 0 ni 15'))] #REQUIRES SIGNIFICA CAMPO OBLIGATRORIO#
-#db.usuario.correo.requires = IS_EMAIL()
-
 db.define_table('marker',
-                Field('id_user', db.usuario),
+                Field('id_user', db.auth_user),
                 Field('lat','text'),
                 Field('lng','text'))
+db.marker.id_user.requires = IS_IN_DB(db, 'auth_user.id', '%s(marker)')
 db.marker.lat.requires = IS_NOT_EMPTY()
 db.marker.lng.requires = IS_NOT_EMPTY()
 

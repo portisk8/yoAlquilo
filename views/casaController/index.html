@@ -47,13 +47,9 @@
                         <a href="{{=URL('default','galeriaCasas')}}">Alquileres</a>
                     </li>
                     <li>
-                        <a href="#" class="dropdown" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Ingresar<span class="caret"></span>
-                        </a>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <li><a href="#">Ingreso Usuarios</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="{{=URL('default','registrarse')}}">Registrarse</a></li>
-                            </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            {{='auth' in globals() and auth.navbar(mode='dropdown') or ''}}
+                        </ul>
                     </li>
                 </ul>
             </div>

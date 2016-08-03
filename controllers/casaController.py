@@ -7,7 +7,7 @@ def index():
     idCasa = idNum
     casa= db.casa(idNum)
     marker= db.marker(casa.id_marker)
-    contacto = db.usuario(marker.id_user)
+    contacto = db.auth_user(marker.id_user)
     return dict(casa=casa, contacto=contacto)
 
 def getId(url):

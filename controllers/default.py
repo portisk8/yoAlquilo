@@ -37,12 +37,6 @@ def user():
     """
     return dict(form=auth())
 
-def registrarse():
-    form=SQLFORM(db.usuario)
-    if form.accepts(request.vars,session):
-        response.flash='Usuario Registrado'
-    return dict(form=form)
-
 @cache.action()
 def download():
     """
@@ -71,10 +65,10 @@ def getMarkers():
             imagen = "<p><img width ='135px' src='"+URL('download',args=photo)+"'/></p>"    
         except:
             imagen = "<p>Not Image</p>"
-        usuario = db(markers[0].id_user == db.usuario.id).select()
+        usuario = db(markers[0].id_user == db.auth_user.id).select()
         #<img width ='135px' src='"+URL('download',args=row.file)+"'/>
         precio = "<p><b>$"+str(casa.precio)+"</b>"
-        contacto = "<p> Nombre:"+usuario[0].nombre+" "+usuario[0].apellido + "<p>Telefono:"+str(usuario[0].tel)
+        contacto = "<p> Nombre:"+usuario[0].first_name+" "+usuario[0].last_name + "<p>Telefono:"+str(usuario[0].phone)
         but='<a href="/yoAlquilo/casaController/index.html?args='+str(casa.id)+'" class="btn">Mas Detalles</a>'
         #boton = '<p><button href='+"{{=URL('casaController,'index', args ='"+str(casa.id)+"')}} type='button' class='btn btn-default btn-lg'>Mas Detalles</button>"
         if(casa.disponible=="Disponible"):

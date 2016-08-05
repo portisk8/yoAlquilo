@@ -4,31 +4,28 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge{{=not request.is_local and ',chrome=1' or ''}}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro</title>
-
+    <title>yoAlquilo</title>
     <!-- include stylesheets -->
+    <script src="{{=URL('static','js/jquery.js')}}"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="{{=URL('static','css/bootstrap.min.css')}}"/>
     <link rel="stylesheet" href="{{=URL('static','css/landing-page.css')}}"/>
-    <link href="../static/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="{{=URL('static','font-awesome/css/font-awesome.css')}}" rel="stylesheet">
     <!-- All JavaScript at the bottom, except for Modernizr which enables
          HTML5 elements & feature detects -->
-    <script src="{{=URL('static','js/modernizr-2.8.3.min.js')}}"></script>
-    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="{{=URL('static','js/modernizr-2.8.3.min.js')}}"></script>
     <!--[if lt IE 9]>
         <script src="{{=URL('static','js/respond-1.4.2.min.js')}}"></script>
         <![endif]-->
     <!-- Favicons -->
-
   </head>
   <body>
-
-  <!-- Navigation -->
+<!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
         <div class="container topnav">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                   <img src="../static/img/logoICO.ico" width="50" height="50">
+                   <img src="{{=URL('static','img/logoICO.ico')}}" width="50" height="50">
                 
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
@@ -41,6 +38,11 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
+                    {{if auth.user!=None:}}
+                    <li>
+                        <a href="{{=URL('default','administracion')}}">Administracion</a>
+                    </li>
+                    {{pass}}
                     <li>
                         <a href="{{=URL('default','index')}}">Mapa</a>
                     </li>
@@ -48,13 +50,9 @@
                         <a href="{{=URL('default','galeriaCasas')}}">Alquileres</a>
                     </li>
                     <li>
-                        <a href="#" class="dropdown" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Ingresar<span class="caret"></span>
-                        </a>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <li><a href="#">Ingreso Usuarios</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">Registrarse</a></li>
-                            </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            {{='auth' in globals() and auth.navbar(mode='dropdown') or ''}}
+                        </ul>
                     </li>
                 </ul>
             </div>
@@ -67,20 +65,11 @@
         <div class="container">
             <div class="row">
                 <div class="box">
-                        <div class="intro-message">
-                            <h1>yoAlquilo</h1>
-                            <h3>Pesca del Dorado 2016- Paso de la Patria</h3>
-                            <hr class="intro-divider">
-                            <center><h3>Resgistro</h3></center>
-                            <div class="centrado">
-                                {{=form}}
-                            </div>
-                        </div>
+                        <br><br><br><br><br><br>
                 </div>
             </div>
         </div>
     </div>
-        <!-- /.container -->
 
     <!--footer-->
   <footer>
@@ -105,12 +94,10 @@
       <br>
   </footer>
 
+
 <!-- jQuery -->
-    <script src="../static/js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../static/js/bootstrap.min.js"></script>
    
   </body>
 </html>
-

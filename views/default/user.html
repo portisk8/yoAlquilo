@@ -1,24 +1,82 @@
-{{extend 'layout.html'}}
-
-<h2>
-{{=T('Sign Up') if request.args(0) == 'register' else T('Log In') if request.args(0) == 'login' else T(request.args(0).replace('_',' ').title())}}
-</h2>
-
-<div class="container">
-    <div class="row">
-        <div id="web2py_user_form" class="col-lg-6">
-        {{
-        if request.args(0)=='login':
-            if not 'register' in auth.settings.actions_disabled:
-                form.add_button(T('Sign Up'),URL(args='register', vars={'_next': request.vars._next} if request.vars._next else None),_class='btn btn-default')
-            pass
-            if not 'request_reset_password' in auth.settings.actions_disabled:
-                form.add_button(T('Lost Password'),URL(args='request_reset_password'),_class='btn btn-default')
-            pass
-        pass
-        =form
-        }}
+<!DOCTYPE html>
+<html> 
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge{{=not request.is_local and ',chrome=1' or ''}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>yoAlquilo</title>
+    <!-- include stylesheets -->
+    <script src="{{=URL('static','js/jquery.js')}}"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{{=URL('static','css/bootstrap.min.css')}}"/>
+    <link rel="stylesheet" href="{{=URL('static','css/landing-page.css')}}"/>
+    <link href="{{=URL('static','font-awesome/css/font-awesome.css')}}" rel="stylesheet">
+    <!-- All JavaScript at the bottom, except for Modernizr which enables
+         HTML5 elements & feature detects -->
+    <script src="{{=URL('static','js/modernizr-2.8.3.min.js')}}"></script>
+    <!--[if lt IE 9]>
+        <script src="{{=URL('static','js/respond-1.4.2.min.js')}}"></script>
+        <![endif]-->
+    <!-- Favicons -->
+  </head>
+  <body>
+  <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+        <div class="container topnav">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                   <img src="{{=URL('static','img/logoICO.ico')}}" width="50" height="50">
+                
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand topnav" href="#page-top">yoAlquilo</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="{{=URL('default','index')}}">Mapa</a>
+                    </li>
+                    <li>
+                        <a href="{{=URL('default','galeriaCasas')}}">Alquileres</a>
+                    </li>
+                    <li>
+                        <ul class="nav navbar-nav navbar-right">
+                            {{='auth' in globals() and auth.navbar(mode='dropdown') or ''}}
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
         </div>
+        <!-- /.container -->
+    </nav>
+<!-- Header -->
+    <div class="intro-header">
+        <div class="container">
+            <div class="row">
+                <div class="box">
+                <br><br>
+                    <h3>
+                    {{=T('Sign Up') if request.args(0) == 'register' else T('Log In') if request.args(0) == 'login' else T(request.args(0).replace('_',' ').title())}}
+                    </h3><br>
+                        <div id="web2py_user_form" class="col-lg-10">
+                        {{
+                        if request.args(0)=='login':
+                            if not 'register' in auth.settings.actions_disabled:
+                                form.add_button(T('Sign Up'),URL(args='register', vars={'_next': request.vars._next} if request.vars._next else None),_class='btn btn-default')
+                            pass
+                            if not 'request_reset_password' in auth.settings.actions_disabled:
+                                form.add_button(T('Lost Password'),URL(args='request_reset_password'),_class='btn btn-default')
+                            pass
+                        pass
+                        =form
+                        }}
+                        </div>
     </div>
 </div>
 
@@ -33,3 +91,38 @@
 {{pass}}
 </script>
 {{end page_js}}
+                </div>
+            </div>
+        </div>
+    </div>
+        <!-- /.container -->
+
+    <!--footer-->
+  <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                  <h2 class="section-heading">Contáctenos</h2>
+                    <hr>
+                    <p>Si tiene alguna duda, comentario, sugerencias o inquietudes, escríbanos al nuestro e-mail o en nuestra Fan Page</p> <br><br>
+                </div>
+                <div class="col-lg-4 col-lg-offset-2 text-center">
+                    <i class="fa fa-facebook fa-3x sr-contact"></i>
+                    <p>yoAlquilo paso de la patria</p>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <i class="fa fa-envelope-o fa-3x sr-contact"></i>
+                    <p><a href="mailto:your-email@your-domain.com">yoalquilo@gmail.com</a></p>
+                </div>
+            </div>
+        </div>
+      <br><center> Copyright &copy; YoAlquilo 2016</center>
+      <br>
+  </footer>
+
+
+<!-- jQuery -->
+
+    <!-- Bootstrap Core JavaScript -->
+  </body>
+</html>

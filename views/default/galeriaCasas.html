@@ -52,6 +52,11 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
+                    {{if auth.user!=None:}}
+                    <li>
+                        <a href="{{=URL('default','administracion')}}">Administracion</a>
+                    </li>
+                    {{pass}}
                     <li>
                         <a href="{{=URL('default','index')}}">Mapa</a>
                     </li>
@@ -80,6 +85,28 @@
                     </div>
                 </div>        
                 <div class="row">
+                {{for i, casa in enumerate(casas):}}
+                                        {{if i == ipp: break}}
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 galeria-item">
+                                                <a href="{{=URL('casaController', 'index', args = casa.id)}}">
+                                                        <img src="{{=URL('download', args = casa.file)}}" class="embed-responsive-item img-thumbnail" style="width:350px; height:200px">
+                                                        
+                                                </a>
+                                        </div>
+                                {{pass}}
+                             </div>
+                             <nav>
+                                <ul class="pager">
+                                {{if page:}}
+                                <li><a href="{{=URL(args=[page-1])}}"><span aria-hidden="true">&larr;</span> Anterior</a></li>
+                                {{pass}}
+
+                                {{if len(casas) > ipp:}}
+                                <li><a href="{{=URL(args=[page+1])}}">Proximo <span aria-hidden="true">&rarr;</span></a></li>
+                                {{pass}}
+                                </ul>
+                             </nav>
+                {{=casas}}
                     <div class="col-md-4 portfolio-item">
                         <div class="thumbnail">
                                 <img class="img-responsive" src="../static/img/2.jpg" alt="">

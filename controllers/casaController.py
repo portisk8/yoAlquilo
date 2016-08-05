@@ -3,7 +3,7 @@ from gluon.serializers import loads_json
 global idCasa
 
 def index():
-    idNum= getId(URL(args=request.args, vars=request.get_vars, host=True))
+    idNum= getId2(URL(args=request.args, vars=request.get_vars, host=True))
     idCasa = idNum
     casa= db.casa(idNum)
     marker= db.marker(casa.id_marker)

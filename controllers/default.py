@@ -13,10 +13,16 @@ def index():
     return dict()
 
 
-
 def galeriaCasas():
-    return dict()
+    if len(request.args): page = int(request.args[0])
+    else: page = 0
+    ipp = 8
+    limitby = (page*ipp, (page+1)*ipp+1)
+    casas = db().select(db.casa.ALL, orderby=~db.casa.id, limitby=limitby)
+    return dict (casas=casas, page=page, ipp=ipp)
 
+def administracion():
+    return dict()
 
 
 def user():
@@ -36,6 +42,7 @@ def user():
     also notice there is http://..../[app]/appadmin/manage/auth to allow administrator to manage users
     """
     return dict(form=auth())
+
 
 @cache.action()
 def download():
@@ -69,7 +76,7 @@ def getMarkers():
         #<img width ='135px' src='"+URL('download',args=row.file)+"'/>
         precio = "<p><b>$"+str(casa.precio)+"</b>"
         contacto = "<p> Nombre:"+usuario[0].first_name+" "+usuario[0].last_name + "<p>Telefono:"+str(usuario[0].phone)
-        but='<a href="/yoAlquilo/casaController/index.html?args='+str(casa.id)+'" class="btn">Mas Detalles</a>'
+        but='<a href="/casaController/index.html?args='+str(casa.id)+'" class="btn">Mas Detalles</a>'
         #boton = '<p><button href='+"{{=URL('casaController,'index', args ='"+str(casa.id)+"')}} type='button' class='btn btn-default btn-lg'>Mas Detalles</button>"
         if(casa.disponible=="Disponible"):
             icono = '../static/icons/icon_green32.png'
@@ -89,3 +96,4 @@ def getMarkers():
 
 def download():
     return response.download(request, db)
+

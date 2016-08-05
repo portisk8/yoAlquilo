@@ -76,7 +76,7 @@ def getMarkers():
         #<img width ='135px' src='"+URL('download',args=row.file)+"'/>
         precio = "<p><b>$"+str(casa.precio)+"</b>"
         contacto = "<p> Nombre:"+usuario[0].first_name+" "+usuario[0].last_name + "<p>Telefono:"+str(usuario[0].phone)
-        but='<a href="/casaController/index.html?args='+str(casa.id)+'" class="btn">Mas Detalles</a>'
+        but='<a href="/yoAlquilo/casaController/index/'+str(casa.id)+'" class="btn">Mas Detalles</a>'
         #boton = '<p><button href='+"{{=URL('casaController,'index', args ='"+str(casa.id)+"')}} type='button' class='btn btn-default btn-lg'>Mas Detalles</button>"
         if(casa.disponible=="Disponible"):
             icono = '../static/icons/icon_green32.png'

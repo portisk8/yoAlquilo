@@ -17,7 +17,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 700;
 }
 
@@ -53,11 +53,13 @@ h6 {
     position: relative;
     padding-top: 2%;
     padding-bottom: 20%;
+    color: rgba(158, 83, 16, 0.7);
 }
 .intro-message > h1 {
     margin: 0;
     text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
     font-size: 5em;
+    color: rgba(123, 34, 6, 0.72);
 }
 
 .intro-divider {
@@ -187,8 +189,8 @@ p.copyright {
 }
 
 .navbar-default {
-  background-color: rgba(255, 255, 255, 0.63);
-  border-color: rgba(255, 255, 255, 0.63);
+  background-color: rgba(115, 114, 112, 0.79);
+  border-color: rgba(115, 114, 112, 0.79);
 }
 
 .box {
@@ -220,16 +222,16 @@ p.copyright {
 
 }
 .navbar-default .navbar-brand {
-  color: #662F00;
+  color: #FFF;
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
-  color: #662F00;
+  color: #000;
   background-color: transparent;
 }
 
 hr {
-  border-color: #0F997F;
+  border-color: black;
   border-width: 5px;
   max-width: 80px;
 }
@@ -261,7 +263,7 @@ footer .footer-below {
     margin: 0;
     text-shadow: 2px 2px 3px rgba(138, 109, 59, 0.37);
     font-size: 3em;
-    color:rgba(56, 66, 59, 0.88);
+    color: rgba(78, 77, 76, 0.87);
 }
 
 .intro-divider {
@@ -272,7 +274,7 @@ footer .footer-below {
 
 .intro-message > h3 {
     text-shadow: 2px 2px 3px rgba(138, 109, 59, 0.37);
-    color: rgba(45, 45, 42, 0.88);
+    color: rgba(51, 51, 51, 0.81);
 }
 
 
@@ -319,14 +321,14 @@ footer .footer-below {
 }
 
 .navbar-default .navbar-text {
-  color: #333;
+  color: #FFF;
 }
 .navbar-default .navbar-nav > li > a {
-  color: #333;
+  color: #FFF;
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
-  color: white;
+  color: black;
   background-color: transparent;
 }
 .navbar-default .navbar-nav > .active > a,
@@ -334,4 +336,42 @@ footer .footer-below {
 .navbar-default .navbar-nav > .active > a:focus {
   color: white;
   background-color: #e7e7e7;
+}
+
+.box2 {
+    margin-top: 40px;
+    margin-bottom: 5px;
+    padding: 0px 15px;
+    background: #fff;
+    background: rgba(115, 114, 112, 0.79);
+}
+
+@media screen and (min-width:1200px) {
+    .box2:after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+}
+
+.footer-letra{
+    color: white;
+}
+
+.fondo{
+    background-color: rgba(115, 114, 112, 0.79);
+    color: black;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+a:hover,
+a:focus {
+  color: black;
+}
+a:focus {
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
 }

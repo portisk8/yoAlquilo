@@ -80,21 +80,25 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="intro-message">
-                            <h2 class="marron">Casas para alquilar</h2>
+                            <h2 class="marron">Casas en alquiler</h2>
                         </div>
                     </div>
                 </div>        
                 <div class="row">
                 {{for i, casa in enumerate(casas):}}
-                                        {{if i == ipp: break}}
-                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 galeria-item">
-                                                <a href="{{=URL('casaController', 'index', args = casa.id)}}">
-                                                        <img src="{{=URL('download', args = casa.file)}}" class="embed-responsive-item img-thumbnail" style="width:350px; height:200px">
-                                                        
-                                                </a>
-                                        </div>
-                                {{pass}}
-                             </div>
+                    {{if i == ipp: break}}
+                        <div class="col-md-4 portfolio-item">
+                            <div class="thumbnail">
+                                <img src="{{=URL('download', args = casa.file)}}" class="embed-responsive-item img-thumbnail" style="width:350px; height:200px">
+                                <h3 class="marron">
+                                {{=casa.nombre}}
+                                </h3>
+                                <p>{{=casa.descripcion}}</p>
+                                <a class="btn btn-default" href="{{=URL('casaController', 'index', args = casa.id)}}" role="button">Mas detalles</a>
+                            </div>
+                        </div>
+                {{pass}}
+                </div>
                              <nav>
                                 <ul class="pager">
                                 {{if page:}}
@@ -106,139 +110,37 @@
                                 {{pass}}
                                 </ul>
                              </nav>
-                {{=casas}}
-                    <div class="col-md-4 portfolio-item">
-                        <div class="thumbnail">
-                                <img class="img-responsive" src="../static/img/2.jpg" alt="">
-                            </a>
-                            <h3 class="marron">
-                                Casa1
-                            </h3>
-                            <p>Casa con tres dormitorioss, uno de ellos matrimonial. Tres colchones aparte. Cocina con todos los utensilios. Garage cubierto y cesped en amplio patio</p>
-                            <button type="button" class="btn btn-default">Más info</button>
-                        </div>
-                    </div>
-                    <div class="col-md-4 portfolio-item">
-                        <div class="thumbnail">
-                                <img class="img-responsive" src="../static/img/2.jpg" alt="">
-                            </a>
-                            <h3 class="marron">
-                                Casa2
-                            </h3>
-                            <p>Casa con tres dormitorioss, uno de ellos matrimonial. Tres colchones aparte. Cocina con todos los utensilios. Garage cubierto y cesped en amplio patio</p>
-                            <button type="button" class="btn btn-default">Más info</button>
-                        </div>
-                    </div>
-                    <div class="col-md-4 portfolio-item">
-                        <div class="thumbnail">
-                                <img class="img-responsive" src="../static/img/3.jpg" alt="">
-                            </a>
-                            <h3 class="marron">
-                                Casa3
-                            </h3>
-                            <p>Casa con tres dormitorioss, uno de ellos matrimonial. Tres colchones aparte. Cocina con todos los utensilios. Garage cubierto y cesped en amplio patio</p>
-                            <button type="button" class="btn btn-default">Más info</button>
-                        </div>
-                    </div>
-                </div>  
-            <!--Row-->
-                <div class="row">
-                    <div class="col-md-4 portfolio-item">
-                        <div class="thumbnail">
-                            <img class="img-responsive" src="../static/img/4.jpg" alt="">
-                            </a>
-                            <h3 class="marron">
-                                casa 4
-                            </h3>
-                            <p>Casa con tres dormitorioss, uno de ellos matrimonial. Tres colchones aparte. Cocina con todos los utensilios. Garage cubierto y cesped en amplio patio.</p>
-                            <button type="button" class="btn btn-default">Más info</button>
-                        </div>
-                    </div>
-                    <div class="col-md-4 portfolio-item">
-                        <div class="thumbnail">
-                            <img class="img-responsive" src="../static/img/5.jpg" alt="">
-                            </a>
-                            <h3 class="marron">
-                                Casa 5
-                            </h3>
-                            <p>Casa con tres dormitorioss, uno de ellos matrimonial. Tres colchones aparte. Cocina con todos los utensilios. Garage cubierto y cesped en amplio patio</p>
-                            <button type="button" class="btn btn-default">Más info</button>
-                        </div>
-                    </div>
-                    <div class="col-md-4 portfolio-item">
-                        <div class="thumbnail">
-                            <img class="img-responsive" src="../static/img/6.jpg" alt="">
-                            </a>
-                            <h3 class="marron">
-                                Casa 6
-                            </h3>
-                            <p>Casa con tres dormitorioss, uno de ellos matrimonial. Tres colchones aparte. Cocina con todos los utensilios. Garage cubierto y cesped en amplio patio</p>
-                            <button type="button" class="btn btn-default">Más info</button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Row -->
-                <div class="row">
-                    <div class="col-md-4 portfolio-item">
-                        <div class="thumbnail">
-                            <img class="img-responsive" src="../static/img/7.jpg" alt="">
-                            </a>
-                            <h3 class="marron">
-                                Casa 7
-                            </h3>
-                            <p>Casa con tres dormitorioss, uno de ellos matrimonial. Tres colchones aparte. Cocina con todos los utensilios. Garage cubierto y cesped en amplio patio</p>
-                            <button type="button" class="btn btn-default">Más info</button>
-                        </div>
-                    </div>
-                    <div class="col-md-4 portfolio-item">
-                        <div class="thumbnail">
-                            <img class="img-responsive" src="../static/img/8.jpg" alt="">
-                            </a>
-                            <h3 class="marron">
-                                Casa 8
-                            </h3>
-                            <p>Casa con tres dormitorioss, uno de ellos matrimonial. Tres colchones aparte. Cocina con todos los utensilios. Garage cubierto y cesped en amplio patio.</p>
-                            <button type="button" class="btn btn-default">Más info</button>
-                        </div>
-                    </div>
-                    <div class="col-md-4 portfolio-item">
-                        <div class="thumbnail">
-                            <img class="img-responsive" src="../static/img/9.jpg" alt="">
-                            </a>
-                            <h3 class="marron">
-                                Casa 9
-                            </h3>
-                            <p>Casa con tres dormitorioss, uno de ellos matrimonial. Tres colchones aparte. Cocina con todos los utensilios. Garage cubierto y cesped en amplio patio.</p>
-                            <button type="button" class="btn btn-default">Más info</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                  
+            
         </div>
     </div>
 
 <!--/HEADER-->
     <!--footer-->
-      <footer>
-            <div class="container">
+      <div class="container footer-letra">
+            <div class="box2"
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2 text-center">
                       <h2 class="section-heading">Contáctenos</h2>
                         <hr>
-                        <p>Si tiene alguna duda, comentario, sugerencias o inquietudes, escríbanos al nuestro e-mail o en nuestra Fan Page</p> <br><br>
+                        <p class="futer">Si tiene alguna duda, comentario, sugerencias o inquietudes, escríbanos al nuestro e-mail o en nuestra Fan Page</p> <br><br>
                     </div>
                     <div class="col-lg-4 col-lg-offset-2 text-center">
                         <i class="fa fa-facebook fa-3x sr-contact"></i>
-                        <p>yoAlquilo paso de la patria</p>
+                        <p class="futer"><a href="https://www.facebook.com/yoalquilo.ar" target="_blank">yoAlquilo paso de la patria</a></p>
                     </div>
                     <div class="col-lg-4 text-center">
                         <i class="fa fa-envelope-o fa-3x sr-contact"></i>
-                        <p><a href="mailto:your-email@your-domain.com">yoalquilo@gmail.com</a></p>
+                        <p class="futer">yoalquilo@gmail.co</p>
                     </div>
                 </div>
             </div>
-      </footer>
-      <br><center> Copyright &copy; YoAlquilo 2016</center>
+        </div>
+    </div>
+     
+    <div class= "fondo">
+    <br><center> Copyright &copy; YoAlquilo 2016</center>
+    </div>
 
     </body>
 </html>

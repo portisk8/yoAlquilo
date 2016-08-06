@@ -13,6 +13,8 @@
     <link href="../static/font-awesome/css/font-awesome.css" rel="stylesheet">
     <!-- All JavaScript at the bottom, except for Modernizr which enables
          HTML5 elements & feature detects -->
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <script src="{{=URL('static','js/modernizr-2.8.3.min.js')}}"></script>
     <!--[if lt IE 9]>
         <script src="{{=URL('static','js/respond-1.4.2.min.js')}}"></script>
@@ -21,12 +23,12 @@
   </head>
   <body>
   <!-- Navigation -->
+  <div class="container">
     <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
         <div class="container topnav">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                   <img src="../static/img/logoICO.ico" width="50" height="50">
-                
+                   <img src="../static/img/logoICO.ico" width="50" height="50">        
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -60,45 +62,50 @@
         </div>
         <!-- /.container -->
     </nav>
+</div>
 <!-- Header -->
     <div class="intro-header">
         <div class="container">
             <div class="row">
                 <div class="box">
                         <div class="intro-message">
-                            <h1>yoAlquilo</h1>
-                            <h3>Pesca del Dorado 2016- Paso de la Patria</h3>
+                            <h1>Pesca del Dorado - Paso de la Patria</h1>
+                            <h4>yoAlquilo es una app para gestionar alquileres en Paso de la Patria. Si busca donde alquilar, en nuestra app encontrará las distintas casas que se encuentran en alquiler. Si quiere ofrecer su casa como alquiler registrese y podrá agregar una o mas casas para alquilar.</h3>
                             <hr class="intro-divider">
                             <div id="map" class="jumbotron"></div>
                         </div>
                 </div>
             </div>
         </div>
-    </div>
+
         <!-- /.container -->
 
     <!--footer-->
-  <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                  <h2 class="section-heading">Contáctenos</h2>
-                    <hr>
-                    <p>Si tiene alguna duda, comentario, sugerencias o inquietudes, escríbanos al nuestro e-mail o en nuestra Fan Page</p> <br><br>
+
+        <div class="container footer-letra">
+            <div class="box2"
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2 text-center">
+                      <h2 class="section-heading">Contáctenos</h2>
+                        <hr>
+                        <p>Si tiene alguna duda, comentario, sugerencias o inquietudes, escríbanos al nuestro e-mail o en nuestra Fan Page</p> <br><br>
+                    </div>
+                    <div class="col-lg-4 col-lg-offset-2 text-center">
+                        <i class="fa fa-facebook fa-3x sr-contact"></i>
+                        <p><a href="https://www.facebook.com/yoalquilo.ar" target="_blank">yoAlquilo paso de la patria</a></p>
+                    </div>
+                    <div class="col-lg-4 text-center">
+                        <i class="fa fa-envelope-o fa-3x sr-contact"></i>
+                        <p>yoalquilo@gmail.com</p>
+                    </div>
                 </div>
-                <div class="col-lg-4 col-lg-offset-2 text-center">
-                    <i class="fa fa-facebook fa-3x sr-contact"></i>
-                    <p>yoAlquilo paso de la patria</p>
-                </div>
-                <div class="col-lg-4 text-center">
-                    <i class="fa fa-envelope-o fa-3x sr-contact"></i>
-                    <p><a href="mailto:your-email@your-domain.com">yoalquilo@gmail.com</a></p>
-                </div>
-            </div>
         </div>
-      <br><center> Copyright &copy; YoAlquilo 2016</center>
-      <br>
-  </footer>
+    </div>
+     
+    <div class= "fondo">
+    <br><center> Copyright &copy; YoAlquilo 2016</center>
+    </div>
+
 
 
 <!-- jQuery -->

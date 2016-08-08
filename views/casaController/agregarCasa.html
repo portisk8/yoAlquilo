@@ -4,14 +4,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge{{=not request.is_local and ',chrome=1' or ''}}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>yoAlquilo</title>
+    <title>algo</title>
     <!-- include stylesheets -->
     <script src="{{=URL('static','js/jquery.js')}}"></script>
-    <script src="{{=URL('static','js/bootstrap.min.js')}}"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="{{=URL('static','css/bootstrap.min.css')}}"/>
     <link rel="stylesheet" href="{{=URL('static','css/landing-page.css')}}"/>
     <link rel="stylesheet" href="{{=URL('static','css/casaController.css')}}"/>
-    <link href="{{=URL('static','font-awesome/css/font-awesome.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{=URL('static','css/agregarCasa.css')}}"/>
+    <link href="../static/font-awesome/css/font-awesome.css" rel="stylesheet">
     <!-- All JavaScript at the bottom, except for Modernizr which enables
          HTML5 elements & feature detects -->
     <script src="{{=URL('static','js/modernizr-2.8.3.min.js')}}"></script>
@@ -27,7 +28,7 @@
         <div class="container topnav">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                   <img src="{{=URL('static','img/logoICO.ico')}}" width="50" height="50">
+                   <img src="../static/img/logoICO.ico" width="50" height="50">
                 
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
@@ -62,27 +63,33 @@
         <div class="container">
             <div class="box">
                 <div class="row">
-                    <div class="col-md-8">
-                        <img class="img-responsive" src="{{=URL('download', args=casa.file)}}" width="700" height="400" alt="">
-                    </div>
 
-                    <div class="col-md-4">
-                        <h3>{{=casa.nombre}}</h3>
-                            <p class="izq gris">{{=casa.descripcion}}</p>
-                            <div class="izq">
-                                <i class="fa fa-usd" aria-hidden="true"></i> {{=casa.precio}}<br/>
-                                <i class="fa fa-map-marker" aria-hidden="true"></i> {{=casa.direccion}}<br/>
-                                <i class="fa fa-home" aria-hidden="true"></i> {{=casa.disponible}}<br/>
-                                
-                                <h3>Contacto</h3>
-                                <i class="fa fa-user" aria-hidden="true"></i> {{=contacto.first_name}} {{=contacto.last_name}} </br>
-                                <i class="fa fa-mobile" aria-hidden="true"></i>  {{=contacto.phone}}</br>
-                                <i class="fa fa-envelope-o sr-contact"></i>   {{=contacto.email}}
+                    {{=form.custom.begin}}
+                    <p>
+                    Titulo: {{=form.custom.widget.nombre}}
+                    <p>
+                    Direccion: {{=form.custom.widget.direccion}}
+                    <p>
+                    Descripción: {{=form.custom.widget.descripcion}}
+                    <p>
+                    Disponibilidad: {{=form.custom.widget.disponible}}
+                    <p>
+                    Precio: {{=form.custom.widget.precio}}
+                    <p>
+                    Imagen: {{=form.custom.widget.file}}
+                    <p>
+                        Selecciona el lugar donde se encuentra la casa:
+                        <p>
+                            <textarea class="string form-control pan-to-marker" cols="4" id="marker_lat" name="lat" rows="1"></textarea>
+                        <p>
+                            <textarea class="string form-control pan-to-marker" cols="4" id="marker_lng" name="lng" rows="1"></textarea>
+                            <div id="floating-panel">
+                              <input onclick="deleteMarkers();" type=button value="Borrar Marcador">
                             </div>
-                    </div>
+                    <div id="map" class="jumbotron"></div>
+                    {{=form.custom.submit}}
+                    {{=form.custom.end}}
                 </div>
-                <br><br>
-                <div id="map" class="jumbotron"></div>
             </div>
         </div>
     </div>
@@ -111,28 +118,51 @@
   </footer>
 <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
 <script src="{{=URL('static','js/gmaps.js')}}"></script>
-
 <script>
+var map;
+var cont=0;
+
 $(document).ready(function(){
-    $.urlParam = function(name){
-    var results = new RegExp('[\?casaController/]' + name + '([^&#]*)').exec(window.location.href);
-    return results[1] || 0;
-    };
-    var id = $.urlParam('index/');
-    /*alert(id);*/
-    var url="{{=URL("getMarker")}}"
-/*-------------*/
-      $.getJSON(url+"/"+id,
-              function(data){
-                            map = new GMaps({
-                                  div: '#map',
-                                  lat:data.lat ,
-                                  lng: data.lng
-                                });
-                            map.addMarker(data)
-                            }
-      );
+  map = new GMaps({
+    div: '#map',
+    lat:-27.3148011 ,
+    lng: -58.5636468
   });
+  /*Añade un marker*/
+    GMaps.on('click', map.map, function(event) {
+    var index = map.markers.length;
+    var lat = event.latLng.lat();
+    var lng = event.latLng.lng();
+
+    var template = $('#edit_marker_template').text();
+
+    var content = template.replace(/{map}/g, index).replace(/{lat}/g, lat).replace(/{lng}/g, lng);
+  if (cont<1){
+    cont=1;
+
+    map.addMarker({
+      lat: lat,
+      lng: lng,
+      title: 'Marker #' + index,
+      infoWindow: {
+        content : content
+      }
+    });
+    $("#marker_lat").html(lat);
+    $("#marker_lng").html(lng);
+        }
+    else{
+        alert("Solo puede elegir 1 marcador.")
+    }
+    });
+
+});
+function deleteMarkers(){
+    map.removeMarkers();
+    cont=0;
+    $("#marker_lat").html("");
+    $("#marker_lng").html("");
+};
 </script>
   </body>
 </html>

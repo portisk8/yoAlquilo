@@ -1,6 +1,5 @@
 from gluon.serializers import loads_json
-
-global idCasa
+import os
 
 def index():
     idNum= getId2(URL(args=request.args, vars=request.get_vars, host=True))
@@ -9,6 +8,19 @@ def index():
     marker= db.marker(casa.id_marker)
     contacto = db.auth_user(marker.id_user)
     return dict(casa=casa, contacto=contacto)
+
+def agregarCasa():
+    if auth.user!=None:
+        form=SQLFORM.factory(db.marker,db.casa, Field('file', 'upload', uploadfolder=os.path.join(request.folder, 'uploads')),
+        table_name='casa')
+        if form.accepts(request.vars):
+            id_marker = db.marker.insert(**db.marker._filter_fields(form.vars))
+            form.vars.id_marker=id_marker
+            db.casa.insert(**db.casa._filter_fields(form.vars))
+            response.flash='Thanks for filling the form'
+        return dict(form=form)
+    else:
+        return redirect(URL('default','index'))
 
 def getId(url):
     cont=0
@@ -41,10 +53,10 @@ def getMarker():
     casa= db.casa(idNum)
     marker= db.marker(casa.id_marker)
     if(casa.disponible=="Disponible"):
-        icono = '../static/icons/icon_green32.png'
+        icono = '../../static/icons/icon_green32.png'
         disp ="<p><font color='green'>"+casa.disponible+"</font></p>"
     else:
-        icono = '../static/icons/icon_pink32.png'
+        icono = '../../static/icons/icon_pink32.png'
         disp ="<p><font color='red'>"+casa.disponible+"</font></p>"
     mapa = {
         'lat': marker.lat,

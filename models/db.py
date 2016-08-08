@@ -78,7 +78,7 @@ response.form_label_separator = myconf.get('forms.separator') or ''
 # -------------------------------------------------------------------------
 
 from gluon.tools import Auth
-
+import os
 # host names must be a list of allowed host names (glob syntax allowed)
 auth = Auth(globals(),db)
 
@@ -166,7 +166,7 @@ auth.settings.reset_password_requires_verification = True
 # auth.enable_record_versioning(db)
 
 db.define_table('marker',
-                Field('id_user', db.auth_user),
+                Field('id_user', db.auth_user,default=auth.user_id, writable=False,readable=False),
                 Field('lat','text'),
                 Field('lng','text'))
 db.marker.id_user.requires = IS_IN_DB(db, 'auth_user.id', '%s(marker)')
@@ -180,7 +180,7 @@ db.define_table('casa',
                 Field('descripcion'),
                 Field('disponible'),
                 Field('precio', 'double'),
-                Field('file','upload'))
+                Field('file','upload', uploadfolder=os.path.join(request.folder,'uploads')))
 db.casa.precio.requires = IS_NOT_EMPTY()
 db.casa.disponible.requires = IS_IN_SET(('Disponible','No Disponible'))
 db.casa.file.requires = IS_IMAGE(extensions=('jpeg', 'png'))
